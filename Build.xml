@@ -1,4 +1,4 @@
-<cc>
+<msvc>
      <shared value="jms" />
      <targetdir value="${target.dir}" />
      <tempdir value="${temp.dir}" />
@@ -17,4 +17,4 @@
      <bool />
      <exceptions />
      <usecompilerdirectories />
-</cc>
+</msvc>
