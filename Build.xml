@@ -1,28 +1,20 @@
-<project name="hello world cpp" default="jenkins" basedir=".">
-    <description>
-        Jenkins Ant file for hello world cpp
-    </description>
-  <!-- set global properties for this build -->
-  <property name="app" location="hello world cpp"/>
-  <property name="make.cmd" value="/usr/bin/make"/>
-  <property name="build.native" value="./"/>
- 
-  <target name="init">
-    <!-- Create the time stamp -->
-    <tstamp/>
-  </target>
- 
-  <target name="compile"
-        description="compile the source" >
-    <exec dir="${build.native}" executable="${make.cmd}" failonerror="true">
-    </exec>
-  </target>
- 
-  <target name="clean"
-        description="clean up" >
-    <exec dir="${build.native}" executable="${make.cmd}" failonerror="true">
-    <arg value="clean"/>
-    </exec>
-  </target>
-
-</project>
+<cc>
+     <shared value="jms" />
+     <targetdir value="${target.dir}" />
+     <tempdir value="${temp.dir}" />
+     <include location="${source.dir}" />
+     <include location="${source.generated.dir}" />
+     <sources dir="${source.dir}" includes="*.cpp" />
+     <sources dir="${source.generated.dir}" includes="*.cpp" />
+     <define name="JMS_DECLSPEC" value="__declspec(dllexport)"
+             os="win32,win64" />
+     <define name="JMS_DECLSPEC" value=""
+             notos="win32,win64" />
+     <debug value="${debug.flag}" />
+     <multithreaded />
+     <dynamic />
+     <rtti />
+     <bool />
+     <exceptions />
+     <usecompilerdirectories />
+</cc>
