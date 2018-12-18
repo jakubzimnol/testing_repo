@@ -1,39 +1,27 @@
-<project name="Embedded VxWorks Build for ProjectE" default="jenkins" basedir=".">
-  <description>
-    Jenkins Ant file for Embedded VxWorks Build for ProjectE
-  </description>
+<project name="hello world cpp" default="jenkins" basedir=".">
+    <description>
+        Jenkins Ant file for hello world cpp
+    </description>
   <!-- set global properties for this build -->
-  <property name="make.cmd" value="/opt/WindRiver/utilities-1.0/x86-linux2/bin/make"/>
-  <property name="genmake.cmd" value="/opt/WindRiver/workbench-3.1/x86-linux2/bin/wrws_update.sh"/>
+  <property name="app" location="hello world cpp"/>
+  <property name="make.cmd" value="/usr/bin/make"/>
   <property name="build.native" value="./"/>
-  <property environment="env"/>
-
+ 
   <target name="init">
     <!-- Create the time stamp -->
     <tstamp/>
   </target>
-
-  <target name="genmake" description="Generate Makefile from .project file" >
-    <exec dir="${build.native}" executable="${genmake.cmd}" failonerror="true">
-      <arg line="-data /home/builds/jobs/ProjectE/workspace -l ProjectE -m"/>
-      <env key="WIND_HOME" value="/opt/WindRiver"/>
-      <env key="WIND_BASE" value="/opt/WindRiver/vxworks-6.7"/>
-      <env key="PATH" value="/opt/WindRiver/diab/5.7.0.0/LINUX386/bin:${env.PATH}"/>
-      <env key="LD_LIBRARY_PATH" value="/opt/WindRiver/vxworks-6.7/host/x86-linux2/lib:${env.LD_LIBRARY_PATH}"/>
-      <env key="WIND_PLATFORM" value="vxworks-6.7"/>
-      <env key="LM_LICENSE_FILE" value="/opt/WindRiver/license/zwrsLicense.lic"/>
+ 
+  <target name="compile"
+        description="compile the source" >
+    <exec dir="${build.native}" executable="${make.cmd}" failonerror="true">
     </exec>
   </target>
-
-  <target name="compile" depends="genmake" description="compile the source" >
+ 
+  <target name="clean"
+        description="clean up" >
     <exec dir="${build.native}" executable="${make.cmd}" failonerror="true">
-      <arg line="-f PPC604diab/Makefile clean main_all"/>
-      <env key="WIND_HOME" value="/opt/WindRiver"/>
-      <env key="WIND_BASE" value="/opt/WindRiver/vxworks-6.7"/>
-      <env key="PATH" value="/opt/WindRiver/diab/5.7.0.0/LINUX386/bin:${env.PATH}"/>
-      <env key="LD_LIBRARY_PATH" value="/opt/WindRiver/vxworks-6.7/host/x86-linux2/lib:${env.LD_LIBRARY_PATH}"/>
-      <env key="WIND_PLATFORM" value="vxworks-6.7"/>
-      <env key="LM_LICENSE_FILE" value="/opt/WindRiver/license/zwrsLicense.lic"/>
+    <arg value="clean"/>
     </exec>
   </target>
 
